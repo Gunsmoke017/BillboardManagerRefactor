@@ -19,7 +19,7 @@ public class BillboardMethods implements IBillboardMethods {
     @Override
     public List viewAvailableBillboards() {
         ArrayList<Billboard> billboardsHolder = new ArrayList<>();
-        String SEARCH = "SELECT * FROM billboardsdb WHERE state = 'Available";
+        String SEARCH = "SELECT * FROM billboardsdb WHERE state = 'Available'";
         if (billboardDb.connectToBillboardDb()) {
             try {
                 preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
