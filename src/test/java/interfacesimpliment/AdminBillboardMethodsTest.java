@@ -24,4 +24,10 @@ class AdminBillboardMethodsTest {
         Billboard billboard = new Billboard();
         assertEquals(false, adminBillboardMethods.registerNewBillboard(billboard));
     }
+
+    @Test
+    void returnBillboardsByLocation(){
+        assertNotEquals(test,adminBillboardMethods.viewBillboardByLocation("woji"));
+        System.out.println(adminBillboardMethods.viewBillboardByLocation("woji"));
+    }
 }
