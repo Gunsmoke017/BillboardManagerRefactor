@@ -15,7 +15,7 @@ class AdminBillboardMethodsTest {
     @Test
     void getAllBillboardsTest(){
         assertNotEquals(test,adminBillboardMethods.viewAllBillboards());
-        System.out.println(adminBillboardMethods.viewAllBillboards());
+//        System.out.println(adminBillboardMethods.viewAllBillboards());
     }
 
     @Test
@@ -26,18 +26,18 @@ class AdminBillboardMethodsTest {
     @Test
     void returnBillboardsByLocationTest(){
         assertNotEquals(test,adminBillboardMethods.viewBillboardByLocation("woji"));
-        System.out.println(adminBillboardMethods.viewBillboardByLocation("woji"));
+//        System.out.println(adminBillboardMethods.viewBillboardByLocation("woji"));
     }
 
     @Test
     void returnBillboardBySerialNumberTest(){
         assertNotEquals(billboard,adminBillboardMethods.viewBillboardById(4));
-        System.out.println(adminBillboardMethods.viewBillboardById(4));
+//        System.out.println(adminBillboardMethods.viewBillboardById(4));
     }
 
     @Test
     void adTakeDownTest(){
         assertEquals(" >> Operation aborted",adminBillboardMethods.takeDownAd(2,'n'));
-        System.out.println(adminBillboardMethods.takeDownAd(2,'n'));
+//        System.out.println(adminBillboardMethods.takeDownAd(2,'n'));
     }
 }

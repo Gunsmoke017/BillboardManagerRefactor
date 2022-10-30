@@ -1,9 +1,8 @@
-package interfaces;
+package interfaces.admin;
 
 import entity.billboards.Billboard;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IAdminBillboardMethods {
     boolean registerNewBillboard(Billboard billboard);

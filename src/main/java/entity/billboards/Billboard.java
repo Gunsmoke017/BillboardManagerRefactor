@@ -8,7 +8,7 @@ public class Billboard {
     private String dimension;
     private State state;
     private int pricePerHr;
-    private  BookingDetails bookingDetails;
+    private BookingDetails bookingDetails;
 
     public Billboard() {
     }
@@ -81,9 +81,9 @@ public class Billboard {
     @Override
     public String toString() {
         return "\n***********************************************\n" +
-                " >> Serial number: " + serialNumber +"\n" +
-                " >> Location: " + location +"\n" +
-                " >> Dimension: " + dimension +"\n" +
+                " >> Serial number: " + serialNumber + "\n" +
+                " >> Location: " + location + "\n" +
+                " >> Dimension: " + dimension + "\n" +
                 " >> Price per hour: " + pricePerHr + "\n" +
                 " >> State: " + state + "\n" +
                 bookingDetails;
@@ -92,9 +92,9 @@ public class Billboard {
 
     public String ToString() {
         return "\n***********************************************\n" +
-                " >> Serial number: " + serialNumber +"\n" +
-                " >> Location: " + location +"\n" +
-                " >> Dimension: " + dimension +"\n" +
+                " >> Serial number: " + serialNumber + "\n" +
+                " >> Location: " + location + "\n" +
+                " >> Dimension: " + dimension + "\n" +
                 " >> Price per hour: " + pricePerHr + "\n" +
                 " >> State: " + state + "\n" +
                 "***********************************************"
