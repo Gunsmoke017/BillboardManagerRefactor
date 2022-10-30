@@ -114,7 +114,35 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
 
     @Override
     public Billboard viewBillboardById(long serialNumber) {
-        return null;
+        ArrayList<Billboard> billboardsHolder = new ArrayList<>();
+        Billboard billboard = new Billboard();
+        BookingDetails bookingDetails = new BookingDetails();
+        String SEARCH = "SELECT * FROM billboardsdb WHERE serialnumber = ?";
+        if(billboardDb.connectToBillboardDb()){
+            try{
+                preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
+                preparedStatement.setLong(1,serialNumber);
+                System.out.println(" >> Serial Number entered is: " + serialNumber);
+                resultSet = preparedStatement.executeQuery();
+                while(resultSet.next()){
+                    billboard.setSerialNumber(resultSet.getInt("serialnumber"));
+                    billboard.setLocation(resultSet.getString("location"));
+                    billboard.setDimension(resultSet.getString("dimension"));
+                    billboard.setState(State.valueOf(resultSet.getString("state")));
+                    billboard.setPricePerHr((resultSet.getInt("priceperhr")));
+                    bookingDetails.setCustomer(resultSet.getString("customer"));
+                    bookingDetails.setBookedDate(resultSet.getString("bookeddate"));
+                    bookingDetails.setTimeBooked(resultSet.getString("timebooked"));
+                    bookingDetails.setUploadedFile(resultSet.getString("uploadedfile"));
+                    bookingDetails.setDurationOfBooking(resultSet.getInt("duration"));
+                    billboard.setBookingDetails(bookingDetails);
+                }
+            }
+            catch(SQLException ee){
+                ee.printStackTrace();
+            }
+        }
+        return billboard;
     }
 
     @Override

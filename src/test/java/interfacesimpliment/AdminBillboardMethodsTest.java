@@ -2,16 +2,15 @@ package interfacesimpliment;
 
 import entity.billboards.Billboard;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AdminBillboardMethodsTest {
     AdminBillboardMethods adminBillboardMethods = new AdminBillboardMethods();
-    ArrayList test = new ArrayList();
+    ArrayList<Billboard> test = new ArrayList();
+    Billboard billboard = new Billboard();
 
     @Test
     void getAllBillboards(){
@@ -21,13 +20,18 @@ class AdminBillboardMethodsTest {
 
     @Test
     void registerBillboardTest(){
-        Billboard billboard = new Billboard();
-        assertEquals(false, adminBillboardMethods.registerNewBillboard(billboard));
+        assertFalse(adminBillboardMethods.registerNewBillboard(billboard));
     }
 
     @Test
     void returnBillboardsByLocation(){
         assertNotEquals(test,adminBillboardMethods.viewBillboardByLocation("woji"));
         System.out.println(adminBillboardMethods.viewBillboardByLocation("woji"));
+    }
+
+    @Test
+    void returnBillboardBySerialNumber(){
+        assertNotEquals(billboard,adminBillboardMethods.viewBillboardById(4));
+        System.out.println(adminBillboardMethods.viewBillboardById(4));
     }
 }
