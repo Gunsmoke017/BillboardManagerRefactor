@@ -80,7 +80,7 @@ public class Billboard {
 
     @Override
     public String toString() {
-        return "***********************************************\n" +
+        return "\n***********************************************\n" +
                 " >> Serial number: " + serialNumber +"\n" +
                 " >> Location: " + location +"\n" +
                 " >> Dimension: " + dimension +"\n" +
@@ -91,7 +91,7 @@ public class Billboard {
 
 
     public String ToString() {
-        return "***********************************************\n" +
+        return "\n***********************************************\n" +
                 " >> Serial number: " + serialNumber +"\n" +
                 " >> Location: " + location +"\n" +
                 " >> Dimension: " + dimension +"\n" +
