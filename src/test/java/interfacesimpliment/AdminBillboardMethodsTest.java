@@ -1,5 +1,6 @@
 package interfacesimpliment;
 
+import entity.billboards.Billboard;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
@@ -13,8 +14,14 @@ class AdminBillboardMethodsTest {
     ArrayList test = new ArrayList();
 
     @Test
-    public void getAllBillboards(){
+    void getAllBillboards(){
         assertNotEquals(test,adminBillboardMethods.viewAllBillboards());
         System.out.println(adminBillboardMethods.viewAllBillboards());
+    }
+
+    @Test
+    void registerBillboardTest(){
+        Billboard billboard = new Billboard();
+        assertEquals(false, adminBillboardMethods.registerNewBillboard(billboard));
     }
 }
