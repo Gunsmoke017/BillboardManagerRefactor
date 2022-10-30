@@ -13,7 +13,7 @@ class AdminBillboardMethodsTest {
     Billboard billboard = new Billboard();
 
     @Test
-    void getAllBillboards(){
+    void getAllBillboardsTest(){
         assertNotEquals(test,adminBillboardMethods.viewAllBillboards());
         System.out.println(adminBillboardMethods.viewAllBillboards());
     }
@@ -24,13 +24,13 @@ class AdminBillboardMethodsTest {
     }
 
     @Test
-    void returnBillboardsByLocation(){
+    void returnBillboardsByLocationTest(){
         assertNotEquals(test,adminBillboardMethods.viewBillboardByLocation("woji"));
         System.out.println(adminBillboardMethods.viewBillboardByLocation("woji"));
     }
 
     @Test
-    void returnBillboardBySerialNumber(){
+    void returnBillboardBySerialNumberTest(){
         assertNotEquals(billboard,adminBillboardMethods.viewBillboardById(4));
         System.out.println(adminBillboardMethods.viewBillboardById(4));
     }
