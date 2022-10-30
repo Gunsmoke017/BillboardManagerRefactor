@@ -1,4 +1,4 @@
-package interfacesimpliment;
+package interfacesimpliment.admin;
 
 import database.BillboardDb;
 import entity.billboards.Billboard;

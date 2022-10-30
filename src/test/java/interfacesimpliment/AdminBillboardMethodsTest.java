@@ -1,6 +1,7 @@
 package interfacesimpliment;
 
 import entity.billboards.Billboard;
+import interfacesimpliment.admin.AdminBillboardMethods;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
