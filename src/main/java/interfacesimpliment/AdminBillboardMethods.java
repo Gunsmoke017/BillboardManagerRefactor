@@ -81,10 +81,12 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
     @Override
     public List<Billboard> viewBillboardByLocation(String location) {
         ArrayList<Billboard> billboardsHolder = new ArrayList<>();
-        String SEARCH = "SELECT * FROM billboardsdb";
+        String SEARCH = "SELECT * FROM billboardsdb WHERE location = ?";
         if(billboardDb.connectToBillboardDb()){
             try{
                 preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
+                preparedStatement.setString(1,location);
+                System.out.println(" >> Location entered is: " + location);
                 resultSet = preparedStatement.executeQuery();
                 while(resultSet.next()){
                     Billboard billboard = new Billboard();
