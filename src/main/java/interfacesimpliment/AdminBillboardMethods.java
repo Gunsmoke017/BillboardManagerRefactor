@@ -147,6 +147,34 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
 
     @Override
     public String takeDownAd(long serialNumber, char confirm) {
-        return null;
+        String message = "";
+
+        viewBillboardById(serialNumber);
+
+        String UPDATE = "UPDATE billboardsdb SET  customer =?, bookeddate =?, timebooked =? , state =?, duration =?, uploadedfile = ? WHERE serialnumber =?";
+        if(billboardDb.connectToBillboardDb()){
+            try{
+                    preparedStatement = billboardDb.getConnections().prepareStatement(UPDATE);
+                    preparedStatement.setString(1,"null");
+                    preparedStatement.setString(2,"null");
+                    preparedStatement.setString(3,"null");
+                    preparedStatement.setString(4,"Available");
+                    preparedStatement.setString(5,"0");
+                    preparedStatement.setString(6,"null");
+                    preparedStatement.setLong(7,serialNumber);
+                    if(confirm == 'Y' || confirm == 'y'){
+                        preparedStatement.executeUpdate();
+                         message  =" >> Ad has been taken down";
+                    } else if (confirm == 'N' || confirm == 'n'){
+                         message = " >> Operation aborted";
+                    } else{
+//                        Add exception for invalid input
+                    }
+                }
+             catch(SQLException ee){
+                ee.printStackTrace();
+            }
+        }
+        return message;
     }
 }

@@ -34,4 +34,10 @@ class AdminBillboardMethodsTest {
         assertNotEquals(billboard,adminBillboardMethods.viewBillboardById(4));
         System.out.println(adminBillboardMethods.viewBillboardById(4));
     }
+
+    @Test
+    void adTakeDownTest(){
+        assertEquals(" >> Operation aborted",adminBillboardMethods.takeDownAd(2,'n'));
+        System.out.println(adminBillboardMethods.takeDownAd(2,'n'));
+    }
 }
