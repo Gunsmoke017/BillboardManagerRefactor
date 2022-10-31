@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IBillboardMethods {
     List viewAvailableBillboards();
-    String bookBillboard(BookingDetails bookingDetails);
+    String bookBillboard(BookingDetails bookingDetails, char confirm, long id);
 }
