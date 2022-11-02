@@ -6,6 +6,7 @@ public class BookingDetails {
     private String timeBooked;
     private int durationOfBooking;
     private String uploadedFile;
+    private float price;
 
     public BookingDetails() {
     }
@@ -58,6 +59,14 @@ public class BookingDetails {
         this.uploadedFile = uploadedFile;
     }
 
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return " >> Customer: " + customer +"\n" +
@@ -65,6 +74,7 @@ public class BookingDetails {
                 " >> Date Booked: " + bookedDate + "\n" +
                 " >> Time Booked: " + timeBooked + "\n" +
                 " >> File Uploaded: " + uploadedFile + "\n" +
+                " >> Price: " + price + "\n" +
                 "***********************************************";
     }
 }
