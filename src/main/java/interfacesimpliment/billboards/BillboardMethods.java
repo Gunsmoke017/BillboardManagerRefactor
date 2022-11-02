@@ -76,7 +76,7 @@ public class BillboardMethods implements IBillboardMethods {
                if (confirm == 'n' || confirm == 'N'){
                    message = " >> Transaction aborted";
                    adminBillboardMethods.viewBillboardById(id);
-
+                   price = bookingDetails.getDurationOfBooking() * adminBillboardMethods.viewBillboardById(id).getPricePerHr();
                } else if (confirm == 'y' || confirm == 'Y'){
                    preparedStatement.executeUpdate();
                    message = " >> Transaction completed";
