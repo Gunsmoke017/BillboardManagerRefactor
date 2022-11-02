@@ -21,7 +21,12 @@ class BillboardMethodsTest {
 
     @Test
     void bookBillboardMethodTest(){
-//        assertNotEquals("",billboardMethods.bookBillboard());
+        bookingDetails.setCustomer("Test custommer");
+        bookingDetails.setUploadedFile("test ad");
+        bookingDetails.setDurationOfBooking(12);
+//        assertEquals(" >> Transaction completed",billboardMethods.bookBillboard(bookingDetails,'y',7));
+        System.out.println(billboardMethods.bookBillboard(bookingDetails,'y',7));
+//        System.out.println(billboardMethods.bookBillboard(bookingDetails,'y',7));
 //        billboardMethods.bookBillboard();
     }
 }

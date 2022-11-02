@@ -59,7 +59,8 @@ public class BillboardMethods implements IBillboardMethods {
         DateTimeFormatter dateFormatter =DateTimeFormatter.ofPattern("EEEE, MMMM dd yyyy");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:MM");
 
-        float price =0;
+        bookingDetails.setBookedDate(dateFormatter.format(dateTimeGetter));
+        bookingDetails.setTimeBooked(timeFormatter.format(dateTimeGetter));
 
         String UPDATE = "UPDATE billboardsdb SET  customer =?, bookeddate =?, timebooked =? , state =?, duration =?, uploadedfile = ? WHERE serialnumber =?";
         if(billboardDb.connectToBillboardDb()){
@@ -75,11 +76,12 @@ public class BillboardMethods implements IBillboardMethods {
 
                if (confirm == 'n' || confirm == 'N'){
                    message = " >> Transaction aborted";
-                   adminBillboardMethods.viewBillboardById(id);
-                   bookingDetails.setPrice(bookingDetails.getDurationOfBooking() * adminBillboardMethods.viewBillboardById(id).getPricePerHr());
                } else if (confirm == 'y' || confirm == 'Y'){
                    preparedStatement.executeUpdate();
                    message = " >> Transaction completed";
+                   bookingDetails.setPrice(bookingDetails.getDurationOfBooking() * adminBillboardMethods.viewBillboardById(id).getPricePerHr());
+                   System.out.println(adminBillboardMethods.viewBillboardById(id));
+                   System.out.println(bookingDetails.getPrice());
                }
             }
             catch (SQLException ee){

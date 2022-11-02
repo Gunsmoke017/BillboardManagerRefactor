@@ -1,6 +1,7 @@
 package interfacesimpliment;
 
 import entity.billboards.Billboard;
+import enums.State;
 import interfacesimpliment.admin.AdminBillboardMethods;
 import org.junit.jupiter.api.Test;
 
@@ -18,9 +19,18 @@ class AdminBillboardMethodsTest {
         assertNotEquals(test,adminBillboardMethods.viewAllBillboards());
 //        System.out.println(adminBillboardMethods.viewAllBillboards());
     }
+    @Test
+    void registerBillboardTestOne(){
+        billboard.setSerialNumber(007);
+        billboard.setLocation("test location");
+        billboard.setState(State.Available);
+        billboard.setDimension("test x test");
+        billboard.setPricePerHr(12000);
+        assertEquals(true,adminBillboardMethods.registerNewBillboard(billboard));
+    }
 
     @Test
-    void registerBillboardTest(){
+    void registerBillboardTestTwo(){
         assertFalse(adminBillboardMethods.registerNewBillboard(billboard));
     }
 

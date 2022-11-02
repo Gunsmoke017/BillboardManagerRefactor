@@ -11,12 +11,13 @@ public class BookingDetails {
     public BookingDetails() {
     }
 
-    public BookingDetails(String customer, String bookedDate, String timeBooked, int durationOfBooking, String uploadedFile) {
+    public BookingDetails(String customer, String bookedDate, String timeBooked, int durationOfBooking, String uploadedFile, float price) {
         this.customer = customer;
         this.bookedDate = bookedDate;
         this.timeBooked = timeBooked;
         this.durationOfBooking = durationOfBooking;
         this.uploadedFile = uploadedFile;
+        this.price = price;
     }
 
     public String getCustomer() {
@@ -59,12 +60,12 @@ public class BookingDetails {
         this.uploadedFile = uploadedFile;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public float getPrice() {
+        return price;
     }
 
     @Override
@@ -74,7 +75,7 @@ public class BookingDetails {
                 " >> Date Booked: " + bookedDate + "\n" +
                 " >> Time Booked: " + timeBooked + "\n" +
                 " >> File Uploaded: " + uploadedFile + "\n" +
-                " >> Price: " + price + "\n" +
+                " >> Total Price: " + price + "\n" +
                 "***********************************************";
     }
 }
