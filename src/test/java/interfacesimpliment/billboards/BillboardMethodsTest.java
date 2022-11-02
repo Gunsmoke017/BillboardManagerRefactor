@@ -18,4 +18,10 @@ class BillboardMethodsTest {
         assertNotEquals(test,billboardMethods.viewAvailableBillboards());
         System.out.println(billboardMethods.viewAvailableBillboards());
     }
+
+    @Test
+    void bookBillboardMethodTest(){
+//        assertNotEquals("",billboardMethods.bookBillboard());
+//        billboardMethods.bookBillboard();
+    }
 }
