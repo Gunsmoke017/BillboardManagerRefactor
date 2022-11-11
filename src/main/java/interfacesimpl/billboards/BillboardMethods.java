@@ -1,17 +1,16 @@
-package interfacesimpliment.billboards;
+package interfacesimpl.billboards;
 
 import database.BillboardDb;
 import entity.billboards.Billboard;
 import entity.billboards.BookingDetails;
 import enums.State;
 import interfaces.billboards.IBillboardMethods;
-import interfacesimpliment.admin.AdminBillboardMethods;
+import interfacesimpl.admin.AdminBillboardMethods;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;

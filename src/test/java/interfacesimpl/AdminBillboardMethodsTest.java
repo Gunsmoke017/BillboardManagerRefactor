@@ -1,8 +1,8 @@
-package interfacesimpliment;
+package interfacesimpl;
 
 import entity.billboards.Billboard;
 import enums.State;
-import interfacesimpliment.admin.AdminBillboardMethods;
+import interfacesimpl.admin.AdminBillboardMethods;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
