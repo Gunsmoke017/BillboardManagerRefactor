@@ -9,7 +9,7 @@ public class BillboardDb {
 
     public boolean connectToBillboardDb(){
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/billboards","root","");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/billboards","postgres","gunsmoke017");
             return true;
         }
         catch (SQLException exception){
