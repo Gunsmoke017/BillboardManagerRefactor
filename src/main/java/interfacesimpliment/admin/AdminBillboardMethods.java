@@ -155,9 +155,9 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
                 preparedStatement.setString(2, "null");
                 preparedStatement.setString(3, "null");
                 preparedStatement.setString(4, "Available");
-                preparedStatement.setString(5, "0");
+                preparedStatement.setInt(5, 0);
                 preparedStatement.setString(6, "null");
-                preparedStatement.setFloat(7,0);
+                preparedStatement.setInt(7,0);
                 preparedStatement.setLong(8, serialNumber);
                 if (confirm == 'Y' || confirm == 'y') {
                     preparedStatement.executeUpdate();

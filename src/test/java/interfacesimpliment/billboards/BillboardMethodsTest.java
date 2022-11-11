@@ -28,6 +28,5 @@ class BillboardMethodsTest {
         bookingDetails.setDurationOfBooking(12);
         bookingDetails.setPrice(bookingDetails.getDurationOfBooking() * adminBillboardMethods.viewBillboardById(7).getPricePerHr());
         assertEquals(" >> Transaction completed",billboardMethods.bookBillboard(bookingDetails,'y',7));
-
     }
 }

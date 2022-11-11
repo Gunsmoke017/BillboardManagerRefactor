@@ -42,13 +42,18 @@ class AdminBillboardMethodsTest {
 
     @Test
     void returnBillboardBySerialNumberTest(){
-        assertNotEquals(billboard,adminBillboardMethods.viewBillboardById(4));
+        assertNotEquals(billboard,adminBillboardMethods.viewBillboardById(7));
 //        System.out.println(adminBillboardMethods.viewBillboardById(4));
     }
 
     @Test
-    void adTakeDownTest(){
-        assertEquals(" >> Operation aborted",adminBillboardMethods.takeDownAd(2,'n'));
+    void adTakeDownTestOne(){
+        assertEquals(" >> Operation aborted",adminBillboardMethods.takeDownAd(7,'n'));
 //        System.out.println(adminBillboardMethods.takeDownAd(2,'n'));
+    }
+
+    @Test
+    void adTakeDownTestTwo(){
+        assertEquals(" >> Ad has been taken down",adminBillboardMethods.takeDownAd(7,'y'));
     }
 }
