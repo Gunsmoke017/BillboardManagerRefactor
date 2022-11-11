@@ -75,7 +75,7 @@ public class BookingDetails {
                 " >> Date Booked: " + bookedDate + "\n" +
                 " >> Time Booked: " + timeBooked + "\n" +
                 " >> File Uploaded: " + uploadedFile + "\n" +
-                " >> Total Price: " + price + "\n" +
+                " >> Total Price: N" + price + "\n" +
                 "***********************************************";
     }
 }

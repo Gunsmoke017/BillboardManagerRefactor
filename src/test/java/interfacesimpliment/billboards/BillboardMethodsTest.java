@@ -2,6 +2,7 @@ package interfacesimpliment.billboards;
 
 import entity.billboards.Billboard;
 import entity.billboards.BookingDetails;
+import interfacesimpliment.admin.AdminBillboardMethods;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -21,12 +22,12 @@ class BillboardMethodsTest {
 
     @Test
     void bookBillboardMethodTest(){
+        AdminBillboardMethods adminBillboardMethods = new AdminBillboardMethods();
         bookingDetails.setCustomer("Test custommer");
         bookingDetails.setUploadedFile("test ad");
         bookingDetails.setDurationOfBooking(12);
-//        assertEquals(" >> Transaction completed",billboardMethods.bookBillboard(bookingDetails,'y',7));
-        System.out.println(billboardMethods.bookBillboard(bookingDetails,'y',7));
-//        System.out.println(billboardMethods.bookBillboard(bookingDetails,'y',7));
-//        billboardMethods.bookBillboard();
+        bookingDetails.setPrice(bookingDetails.getDurationOfBooking() * adminBillboardMethods.viewBillboardById(7).getPricePerHr());
+        assertEquals(" >> Transaction completed",billboardMethods.bookBillboard(bookingDetails,'y',7));
+
     }
 }

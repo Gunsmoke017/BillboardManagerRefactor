@@ -131,6 +131,7 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
                     bookingDetails.setTimeBooked(resultSet.getString("timebooked"));
                     bookingDetails.setUploadedFile(resultSet.getString("uploadedfile"));
                     bookingDetails.setDurationOfBooking(resultSet.getInt("duration"));
+                    bookingDetails.setPrice(resultSet.getFloat("totalprice"));
                     billboard.setBookingDetails(bookingDetails);
                 }
             } catch (SQLException ee) {
@@ -146,7 +147,7 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
 
         viewBillboardById(serialNumber);
 
-        String UPDATE = "UPDATE billboardsdb SET  customer =?, bookeddate =?, timebooked =? , state =?, duration =?, uploadedfile = ? WHERE serialnumber =?";
+        String UPDATE = "UPDATE billboardsdb SET  customer =?, bookeddate =?, timebooked =? , state =?, duration =?, uploadedfile = ?, totalprice = ? WHERE serialnumber =?";
         if (billboardDb.connectToBillboardDb()) {
             try {
                 preparedStatement = billboardDb.getConnections().prepareStatement(UPDATE);
@@ -156,7 +157,8 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
                 preparedStatement.setString(4, "Available");
                 preparedStatement.setString(5, "0");
                 preparedStatement.setString(6, "null");
-                preparedStatement.setLong(7, serialNumber);
+                preparedStatement.setFloat(7,0);
+                preparedStatement.setLong(8, serialNumber);
                 if (confirm == 'Y' || confirm == 'y') {
                     preparedStatement.executeUpdate();
                     message = " >> Ad has been taken down";

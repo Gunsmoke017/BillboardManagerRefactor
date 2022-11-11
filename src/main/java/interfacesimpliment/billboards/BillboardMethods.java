@@ -62,7 +62,7 @@ public class BillboardMethods implements IBillboardMethods {
         bookingDetails.setBookedDate(dateFormatter.format(dateTimeGetter));
         bookingDetails.setTimeBooked(timeFormatter.format(dateTimeGetter));
 
-        String UPDATE = "UPDATE billboardsdb SET  customer =?, bookeddate =?, timebooked =? , state =?, duration =?, uploadedfile = ? WHERE serialnumber =?";
+        String UPDATE = "UPDATE billboardsdb SET  customer =?, bookeddate =?, timebooked =? , state =?, duration =?, uploadedfile = ?, totalprice = ? WHERE serialnumber =?";
         if(billboardDb.connectToBillboardDb()){
             try{
                preparedStatement = billboardDb.getConnections().prepareStatement((UPDATE));
@@ -72,16 +72,15 @@ public class BillboardMethods implements IBillboardMethods {
                preparedStatement.setString(4,"Booked");
                preparedStatement.setFloat(5,bookingDetails.getDurationOfBooking());
                preparedStatement.setString(6,bookingDetails.getUploadedFile());
-               preparedStatement.setLong(7, id);
+               preparedStatement.setFloat(7,bookingDetails.getPrice());
+               preparedStatement.setLong(8, id);
 
                if (confirm == 'n' || confirm == 'N'){
                    message = " >> Transaction aborted";
                } else if (confirm == 'y' || confirm == 'Y'){
                    preparedStatement.executeUpdate();
                    message = " >> Transaction completed";
-                   bookingDetails.setPrice(bookingDetails.getDurationOfBooking() * adminBillboardMethods.viewBillboardById(id).getPricePerHr());
                    System.out.println(adminBillboardMethods.viewBillboardById(id));
-                   System.out.println(bookingDetails.getPrice());
                }
             }
             catch (SQLException ee){
