@@ -44,7 +44,25 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
 
     @Override
     public Personnel viewPersonnelByEmail(String email) {
-        return null;
+        Personnel personnel = new Personnel();
+        String SEARCH = " SELECT * FROM admin WHERE email = ?";
+        if(billboardDb.connectToBillboardDb()){
+            try{
+                preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
+                preparedStatement.setString(1, email);
+                System.out.println(" >> Email entered is: " + email);
+                resultSet = preparedStatement.executeQuery();
+                while(resultSet.next()){
+                    personnel.setEmail(email);
+                    personnel.setFirstName(resultSet.getString("firstname"));
+                    personnel.setLastName(resultSet.getString("lastname"));
+                    personnel.setPassword(resultSet.getString("password"));
+                }
+            } catch (SQLException e ){
+                e.printStackTrace();
+            }
+        }
+        return personnel;
     }
 
     @Override
