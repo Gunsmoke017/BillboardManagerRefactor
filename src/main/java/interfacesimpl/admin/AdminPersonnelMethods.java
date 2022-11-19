@@ -7,6 +7,7 @@ import interfaces.admin.IAdminPersonnelMethods;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdminPersonnelMethods implements IAdminPersonnelMethods {
@@ -48,7 +49,25 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
 
     @Override
     public List viewAllPersonnel() {
-        return null;
+        ArrayList<Personnel> personnels = new ArrayList<>();
+        String SEARCH = "SELECT * FROM admin";
+        if(billboardDb.connectToBillboardDb()){
+            try{
+                preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()){
+                    Personnel personnel = new Personnel();
+                    personnel.setEmail(resultSet.getString("email"));
+                    personnel.setFirstName(resultSet.getString("firstname"));
+                    personnel.setLastName(resultSet.getString("lastname"));
+                    personnel.setPassword(resultSet.getString("password"));
+                    personnels.add(personnel);
+                }
+            } catch(SQLException e ){
+                e.printStackTrace();
+            }
+        }
+        return personnels;
     }
 
     @Override
