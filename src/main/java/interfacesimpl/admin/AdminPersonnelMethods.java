@@ -89,8 +89,28 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
     }
 
     @Override
-    public String deletePersonnelById(String email) {
-        return null;
+    public String deletePersonnelById(String email, char confirm) {
+        int upd = 0;
+        String message ="";
+        viewPersonnelByEmail(email);
+        String DELETE = "DELETE FROM admin WHERE email = ?";
+        if(confirm == 'y' || confirm == 'Y'){
+            if(billboardDb.connectToBillboardDb()){ // Refer to this point to check how to use a boolean variable to work in place of the connection role
+                try{
+                    preparedStatement = billboardDb.getConnections().prepareStatement(DELETE);
+                    preparedStatement.setString(1,email);
+                    upd = preparedStatement.executeUpdate();
+                    message = " >> Personnel deleted successfully";
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+        } else if(confirm =='n' || confirm == 'N'){
+            message = " >> Operation aborted";
+        } else{
+//            Add exception to handle incorrect input for the confirm action
+        }
+        return message;
     }
 
     @Override

@@ -8,6 +8,6 @@ public interface IAdminPersonnelMethods {
     boolean registerNewAdmin(Personnel personnel);
     Personnel viewPersonnelByEmail(String email);
     List viewAllPersonnel();
-    String deletePersonnelById(String email);
+    String deletePersonnelById(String email, char confirm);
     boolean validateAdmin(String email, String password);
 }
