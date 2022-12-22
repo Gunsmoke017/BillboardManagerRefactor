@@ -15,6 +15,14 @@ class AdminPersonnelMethodsTest {
 
     @Test
     void viewPersonnelByEmail() {
+        String holder =
+                "\n***********************************************\n" +
+                        " >> Email: " + "test@gmail.com" + "\n" +
+                        "First Name: " + "Luffy" + "\n" +
+                        "Last Name: " + "Monkey" + "\n" +
+                        "***********************************************"
+                ;
+        assertNotEquals(holder,adminPersonnelMethods.viewPersonnelByEmail("test@gmail.com"));
     }
 
     @Test

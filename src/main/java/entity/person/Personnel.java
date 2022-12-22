@@ -52,8 +52,8 @@ public class Personnel {
     public String toString() {
         return "\n***********************************************\n" +
                 " >> Email: " + email + "\n" +
-                "First Name: " + firstName + "\n" +
-                "Last Name: " + lastName + "\n" +
+                " >> First Name: " + firstName + "\n" +
+                " >> Last Name: " + lastName + "\n" +
                 "***********************************************"
                 ;
     }
