@@ -123,6 +123,7 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
                 preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
                 preparedStatement.setString(1,email.toLowerCase());
                 preparedStatement.executeQuery();
+                resultSet = preparedStatement.executeQuery();
                 if(resultSet.next()){
                     String PASSWORD__RETRIEVE = "SELECT password FROM admin WHERE email = ?";
                     preparedStatement = billboardDb.getConnections().prepareStatement(PASSWORD__RETRIEVE);

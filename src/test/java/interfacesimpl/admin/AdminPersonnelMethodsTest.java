@@ -44,5 +44,6 @@ class AdminPersonnelMethodsTest {
 
     @Test
     void validateAdmin() {
+        assertEquals(true,adminPersonnelMethods.validateAdmin("test@gmail.com","niku"));
     }
 }
