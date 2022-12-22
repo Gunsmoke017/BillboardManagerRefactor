@@ -39,6 +39,7 @@ class AdminPersonnelMethodsTest {
 
     @Test
     void deletePersonnelById() {
+        assertEquals(" >> Operation aborted",adminPersonnelMethods.deletePersonnelById("test@gmail.com",'n'));
     }
 
     @Test
