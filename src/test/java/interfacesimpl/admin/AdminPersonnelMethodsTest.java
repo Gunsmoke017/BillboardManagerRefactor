@@ -7,10 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AdminPersonnelMethodsTest {
     Personnel personnel = new Personnel("test@gmail.com","Luffy","Monkey","niku");
+    Personnel personnel2 = new Personnel("test2@gmail.com","Zoro","Roronoa","sake");
     AdminPersonnelMethods adminPersonnelMethods = new AdminPersonnelMethods();
     @Test
     void registerNewAdmin() {
-        assertEquals(true,adminPersonnelMethods.registerNewAdmin(personnel));
+        assertEquals(true,adminPersonnelMethods.registerNewAdmin(personnel2));
     }
 
     @Test
@@ -44,6 +45,6 @@ class AdminPersonnelMethodsTest {
 
     @Test
     void validateAdmin() {
-        assertEquals(true,adminPersonnelMethods.validateAdmin("test@gmail.com","niku"));
+        assertEquals(true,adminPersonnelMethods.validateAdmin("test2@gmail.com","sake"));
     }
 }

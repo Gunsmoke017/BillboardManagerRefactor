@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Base64;
 
 public class AdminPersonnelMethods implements IAdminPersonnelMethods {
     BillboardDb billboardDb = new BillboardDb();
@@ -26,7 +27,7 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
                 preparedStatement.setString(1, personnel.getEmail());
                 preparedStatement.setString(2, personnel.getFirstName());
                 preparedStatement.setString(3, personnel.getLastName());
-                preparedStatement.setString(4,personnel.getPassword());
+                preparedStatement.setString(4, Base64.getEncoder().encodeToString(personnel.getPassword().getBytes()));
                 upd = preparedStatement.executeUpdate();
 
                 if(upd == 0){
@@ -115,7 +116,7 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
 
     @Override
     public boolean validateAdmin(String email, String password) {
-        String holder;
+        String holder,result;
         boolean validate = false;
         String SEARCH = "SELECT email FROM admin WHERE email =?";
         if(billboardDb.connectToBillboardDb()){
@@ -130,8 +131,10 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
                     preparedStatement.setString(1,email.toLowerCase());
                     resultSet = preparedStatement.executeQuery();
                     if(resultSet.next()){
-                        holder =resultSet.getString("password");
-                        if(password.equals(holder)){
+                        holder = resultSet.getString("password");
+                        byte[] temp = Base64.getDecoder().decode(holder);
+                        result = new String(temp);
+                        if(password.equals(result)){
                             validate = true;
                         } else{
 //                            Throw new password mismatch exception
