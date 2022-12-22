@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class AdminPersonnelMethods implements IAdminPersonnelMethods {
     BillboardDb billboardDb = new BillboardDb();
@@ -140,7 +139,7 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
 //                        password not correct exception
                     }
                 } else{
-//                    throw incorrect email exception
+//                    throw email  does not exist exception
                 }
             } catch(SQLException e){
                 e.printStackTrace();
