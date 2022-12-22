@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class AdminPersonnelMethods implements IAdminPersonnelMethods {
     BillboardDb billboardDb = new BillboardDb();
@@ -115,6 +116,36 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
 
     @Override
     public boolean validateAdmin(String email, String password) {
-        return false;
+        String holder;
+        boolean validate = false;
+        String SEARCH = "SELECT email FROM admin WHERE email =?";
+        if(billboardDb.connectToBillboardDb()){
+            try{
+                preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
+                preparedStatement.setString(1,email.toLowerCase());
+                preparedStatement.executeQuery();
+                if(resultSet.next()){
+                    String PASSWORD__RETRIEVE = "SELECT password FROM admin WHERE email = ?";
+                    preparedStatement = billboardDb.getConnections().prepareStatement(PASSWORD__RETRIEVE);
+                    preparedStatement.setString(1,email.toLowerCase());
+                    resultSet = preparedStatement.executeQuery();
+                    if(resultSet.next()){
+                        holder =resultSet.getString("password");
+                        if(password.equals(holder)){
+                            validate = true;
+                        } else{
+//                            Throw new password mismatch exception
+                        }
+                    } else{
+//                        password not correct exception
+                    }
+                } else{
+//                    throw incorrect email exception
+                }
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return validate;
     }
 }
