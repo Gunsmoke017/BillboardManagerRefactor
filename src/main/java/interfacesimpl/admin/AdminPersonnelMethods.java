@@ -62,7 +62,7 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
                     personnel.setLastName(resultSet.getString("lastname"));
                     personnel.setPassword(resultSet.getString("password"));
                 } else{
-                    throw new EmailDoesNotExistException(" >> Email does not exist");
+                    throw new DoesNotExistException(" >> Email does not exist");
                 }
             } catch (SQLException e ){
                 e.printStackTrace();
@@ -154,7 +154,7 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
                         throw new IncorrectPasswordException(" >> Incorrect password entered");
                     }
                 } else{
-                    throw new EmailDoesNotExistException(" >> Email does not exist");
+                    throw new DoesNotExistException(" >> Email does not exist");
                 }
             } catch(SQLException e){
                 e.printStackTrace();

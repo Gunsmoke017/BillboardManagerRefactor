@@ -4,6 +4,10 @@ import database.BillboardDb;
 import entity.billboards.Billboard;
 import entity.billboards.BookingDetails;
 import enums.State;
+import exceptions.DatabaseInsertionException;
+import exceptions.DoesNotExistException;
+import exceptions.InvalidKeyEnteredException;
+import exceptions.NoConnectionException;
 import interfaces.admin.IAdminBillboardMethods;
 
 import java.sql.PreparedStatement;
@@ -33,7 +37,7 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
                 upd = preparedStatement.executeUpdate();
 
                 if (upd == 0) {
-//                            Add exception for failure to register billboard
+                    throw new DatabaseInsertionException(" >> Could not insert billboard into database");
                 } else {
                     System.out.println(" >> Billboard registered successfully");
                     outcome = true;
@@ -41,6 +45,8 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        } else{
+            throw new NoConnectionException(" >> No Connection found");
         }
         return outcome;
     }
@@ -72,6 +78,8 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
             } catch (SQLException ee) {
                 ee.printStackTrace();
             }
+        } else{
+            throw new NoConnectionException(" >> No Connection found");
         }
         return billboardsHolder;
     }
@@ -105,6 +113,8 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
             } catch (SQLException ee) {
                 ee.printStackTrace();
             }
+        } else{
+            throw new NoConnectionException(" >> No Connection found");
         }
         return billboardsHolder;
     }
@@ -120,7 +130,7 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
                 preparedStatement.setLong(1, serialNumber);
                 System.out.println(" >> Serial Number entered is: " + serialNumber);
                 resultSet = preparedStatement.executeQuery();
-                while (resultSet.next()) {
+                if (resultSet.next()) {
                     billboard.setSerialNumber(resultSet.getInt("serialnumber"));
                     billboard.setLocation(resultSet.getString("location"));
                     billboard.setDimension(resultSet.getString("dimension"));
@@ -133,10 +143,14 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
                     bookingDetails.setDurationOfBooking(resultSet.getInt("duration"));
                     bookingDetails.setPrice(resultSet.getFloat("totalprice"));
                     billboard.setBookingDetails(bookingDetails);
+                } else {
+                    throw new DoesNotExistException(" >> Billboard does not exist");
                 }
             } catch (SQLException ee) {
                 ee.printStackTrace();
             }
+        } else{
+            throw new NoConnectionException(" >> No Connection found");
         }
         return billboard;
     }
@@ -165,11 +179,13 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
                 } else if (confirm == 'N' || confirm == 'n') {
                     message = " >> Operation aborted";
                 } else {
-//                        Add exception for invalid input
+                    throw new InvalidKeyEnteredException(" >> Invalid key entered");
                 }
             } catch (SQLException ee) {
                 ee.printStackTrace();
             }
+        } else{
+            throw new NoConnectionException(" >> No Connection found");
         }
         return message;
     }
