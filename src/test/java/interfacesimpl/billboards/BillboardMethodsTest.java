@@ -16,8 +16,8 @@ class BillboardMethodsTest {
 
     @Test
     void returnsAllMethods(){
-        assertNotEquals(test,billboardMethods.viewAvailableBillboards());
-        System.out.println(billboardMethods.viewAvailableBillboards());
+        assertNotEquals(test,billboardMethods.viewAvailableBillboards(true));
+        System.out.println(billboardMethods.viewAvailableBillboards(true));
     }
 
     @Test
@@ -26,7 +26,7 @@ class BillboardMethodsTest {
         bookingDetails.setCustomer("Test custommer");
         bookingDetails.setUploadedFile("test ad");
         bookingDetails.setDurationOfBooking(12);
-        bookingDetails.setPrice(bookingDetails.getDurationOfBooking() * adminBillboardMethods.viewBillboardById(7).getPricePerHr());
-        assertEquals(" >> Transaction completed",billboardMethods.bookBillboard(bookingDetails,'y',7));
+        bookingDetails.setPrice(bookingDetails.getDurationOfBooking() * adminBillboardMethods.viewBillboardById(7, true).getPricePerHr());
+        assertEquals(" >> Transaction completed",billboardMethods.bookBillboard(bookingDetails,'y',7,true ));
     }
 }

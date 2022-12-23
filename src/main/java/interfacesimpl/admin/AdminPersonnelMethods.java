@@ -18,11 +18,11 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
     ResultSet resultSet;
 
     @Override
-    public boolean registerNewAdmin(Personnel personnel) {
+    public boolean registerNewAdmin(Personnel personnel, boolean connection) {
         boolean outcome = false;
         int upd;
         String INSERT = "INSERT INTO admin (email, firstname, lastname, password) VALUES (?,?,?,?)";
-        if(billboardDb.connectToBillboardDb()) {
+        if(connection) {
             try{
                 preparedStatement = billboardDb.getConnections().prepareStatement(INSERT);
                 preparedStatement.setString(1, personnel.getEmail());
@@ -47,10 +47,10 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
     }
 
     @Override
-    public Personnel viewPersonnelByEmail(String email) {
+    public Personnel viewPersonnelByEmail(String email, boolean connection) {
         Personnel personnel = new Personnel();
         String SEARCH = " SELECT * FROM admin WHERE email = ?";
-        if(billboardDb.connectToBillboardDb()){
+        if(connection){
             try{
                 preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
                 preparedStatement.setString(1, email);
@@ -74,10 +74,10 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
     }
 
     @Override
-    public List viewAllPersonnel() {
+    public List viewAllPersonnel(boolean connection) {
         ArrayList<Personnel> personnels = new ArrayList<>();
         String SEARCH = "SELECT * FROM admin";
-        if(billboardDb.connectToBillboardDb()){
+        if(connection){
             try{
                 preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
                 resultSet = preparedStatement.executeQuery();
@@ -99,13 +99,13 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
     }
 
     @Override
-    public String deletePersonnelById(String email, char confirm) {
+    public String deletePersonnelById(String email, char confirm, boolean connection) {
         int upd = 0;
         String message ="";
-        viewPersonnelByEmail(email);
+        viewPersonnelByEmail(email, connection);
         String DELETE = "DELETE FROM admin WHERE email = ?";
         if(confirm == 'y' || confirm == 'Y'){
-            if(billboardDb.connectToBillboardDb()){ // Refer to this point to check how to use a boolean variable to work in place of the connection role
+            if(connection){
                 try{
                     preparedStatement = billboardDb.getConnections().prepareStatement(DELETE);
                     preparedStatement.setString(1,email);
@@ -126,11 +126,11 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
     }
 
     @Override
-    public boolean validateAdmin(String email, String password) {
+    public boolean validateAdmin(String email, String password, boolean connection) {
         String holder,result;
         boolean validate = false;
         String SEARCH = "SELECT email FROM admin WHERE email =?";
-        if(billboardDb.connectToBillboardDb()){
+        if(connection){
             try{
                 preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
                 preparedStatement.setString(1,email.toLowerCase());

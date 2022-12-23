@@ -21,10 +21,10 @@ public class BillboardMethods implements IBillboardMethods {
     PreparedStatement preparedStatement;
     ResultSet resultSet;
     @Override
-    public List viewAvailableBillboards() {
+    public List viewAvailableBillboards(boolean connection) {
         ArrayList<String> billboardsHolder = new ArrayList<>();
         String SEARCH = "SELECT * FROM billboardsdb WHERE state = 'Available'";
-        if (billboardDb.connectToBillboardDb()) {
+        if (connection) {
             try {
                 preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
                 resultSet = preparedStatement.executeQuery();
@@ -54,7 +54,7 @@ public class BillboardMethods implements IBillboardMethods {
     }
 
     @Override
-    public String bookBillboard(BookingDetails bookingDetails, char confirm, long id) {
+    public String bookBillboard(BookingDetails bookingDetails, char confirm, long id, boolean connection) {
         AdminBillboardMethods adminBillboardMethods = new AdminBillboardMethods();
         String message="";
         LocalDateTime dateTimeGetter = LocalDateTime.now();
@@ -65,7 +65,7 @@ public class BillboardMethods implements IBillboardMethods {
         bookingDetails.setTimeBooked(timeFormatter.format(dateTimeGetter));
 
         String UPDATE = "UPDATE billboardsdb SET  customer =?, bookeddate =?, timebooked =? , state =?, duration =?, uploadedfile = ?, totalprice = ? WHERE serialnumber =?";
-        if(billboardDb.connectToBillboardDb()){
+        if(connection){
             try{
                preparedStatement = billboardDb.getConnections().prepareStatement((UPDATE));
                preparedStatement.setString(1,bookingDetails.getCustomer());
@@ -82,7 +82,7 @@ public class BillboardMethods implements IBillboardMethods {
                } else if (confirm == 'y' || confirm == 'Y'){
                    preparedStatement.executeUpdate();
                    message = " >> Transaction completed";
-                   System.out.println(adminBillboardMethods.viewBillboardById(id));
+                   System.out.println(adminBillboardMethods.viewBillboardById(id, connection));
                }
             }
             catch (SQLException ee){

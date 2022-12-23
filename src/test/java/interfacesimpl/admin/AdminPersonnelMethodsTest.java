@@ -11,7 +11,7 @@ class AdminPersonnelMethodsTest {
     AdminPersonnelMethods adminPersonnelMethods = new AdminPersonnelMethods();
     @Test
     void registerNewAdmin() {
-        assertEquals(true,adminPersonnelMethods.registerNewAdmin(personnel2));
+        assertEquals(true,adminPersonnelMethods.registerNewAdmin(personnel2, true));
     }
 
     @Test
@@ -23,7 +23,7 @@ class AdminPersonnelMethodsTest {
                         "Last Name: " + "Monkey" + "\n" +
                         "***********************************************"
                 ;
-        assertNotEquals(holder,adminPersonnelMethods.viewPersonnelByEmail("test@gmail.com"));
+        assertNotEquals(holder,adminPersonnelMethods.viewPersonnelByEmail("test@gmail.com", true));
     }
 
     @Test
@@ -35,16 +35,16 @@ class AdminPersonnelMethodsTest {
                         "Last Name: " + "Monkey" + "\n" +
                         "***********************************************"
                 ;
-        assertNotEquals(holder,adminPersonnelMethods.viewPersonnelByEmail("test@gmail.com"));
+        assertNotEquals(holder,adminPersonnelMethods.viewPersonnelByEmail("test@gmail.com", true));
     }
 
     @Test
     void deletePersonnelById() {
-        assertEquals(" >> Operation aborted",adminPersonnelMethods.deletePersonnelById("test@gmail.com",'n'));
+        assertEquals(" >> Operation aborted",adminPersonnelMethods.deletePersonnelById("test@gmail.com",'n', true));
     }
 
     @Test
     void validateAdmin() {
-        assertEquals(true,adminPersonnelMethods.validateAdmin("test2@gmail.com","sake"));
+        assertEquals(true,adminPersonnelMethods.validateAdmin("test2@gmail.com","sake", true));
     }
 }

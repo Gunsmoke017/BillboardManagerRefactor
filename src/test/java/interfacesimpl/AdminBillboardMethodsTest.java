@@ -16,7 +16,7 @@ class AdminBillboardMethodsTest {
 
     @Test
     void getAllBillboardsTest(){
-        assertNotEquals(test,adminBillboardMethods.viewAllBillboards());
+        assertNotEquals(test,adminBillboardMethods.viewAllBillboards(true));
     }
     @Test
     void registerBillboardTestOne(){
@@ -25,26 +25,26 @@ class AdminBillboardMethodsTest {
         billboard.setState(State.Available);
         billboard.setDimension("test x test");
         billboard.setPricePerHr(12000);
-        assertEquals(true,adminBillboardMethods.registerNewBillboard(billboard));
+        assertEquals(true,adminBillboardMethods.registerNewBillboard(billboard,true ));
     }
 
     @Test
     void returnBillboardsByLocationTest(){
-        assertNotEquals(test,adminBillboardMethods.viewBillboardByLocation("test location"));
+        assertNotEquals(test,adminBillboardMethods.viewBillboardByLocation("test location", true));
     }
 
     @Test
     void returnBillboardBySerialNumberTest(){
-        assertNotEquals(billboard,adminBillboardMethods.viewBillboardById(7));
+        assertNotEquals(billboard,adminBillboardMethods.viewBillboardById(7, true));
     }
 
     @Test
     void adTakeDownTestOne(){
-        assertEquals(" >> Operation aborted",adminBillboardMethods.takeDownAd(7,'n'));
+        assertEquals(" >> Operation aborted",adminBillboardMethods.takeDownAd(7,'n', true));
     }
 
     @Test
     void adTakeDownTestTwo(){
-        assertEquals(" >> Ad has been taken down",adminBillboardMethods.takeDownAd(7,'y'));
+        assertEquals(" >> Ad has been taken down",adminBillboardMethods.takeDownAd(7,'y', true));
     }
 }

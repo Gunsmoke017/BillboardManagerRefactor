@@ -22,11 +22,11 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
     ResultSet resultSet;
 
     @Override
-    public boolean registerNewBillboard(Billboard billboard) {
+    public boolean registerNewBillboard(Billboard billboard, boolean connection) {
         int upd;
         boolean outcome = false;
         String INSERT = "INSERT INTO billboardsdb (serialnumber, location, dimension, state, priceperhr) VALUES (?,?,?,?,?)";
-        if (billboardDb.connectToBillboardDb()) {
+        if (connection) {
             try {
                 preparedStatement = billboardDb.getConnections().prepareStatement(INSERT);
                 preparedStatement.setLong(1, billboard.getSerialNumber());
@@ -52,10 +52,10 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
     }
 
     @Override
-    public List<Billboard> viewAllBillboards() {
+    public List<Billboard> viewAllBillboards(boolean connection) {
         ArrayList<Billboard> billboardsHolder = new ArrayList<>();
         String SEARCH = "SELECT * FROM billboardsdb";
-        if (billboardDb.connectToBillboardDb()) {
+        if (connection) {
             try {
                 preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
                 resultSet = preparedStatement.executeQuery();
@@ -85,10 +85,10 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
     }
 
     @Override
-    public List<Billboard> viewBillboardByLocation(String location) {
+    public List<Billboard> viewBillboardByLocation(String location, boolean connection) {
         ArrayList<Billboard> billboardsHolder = new ArrayList<>();
         String SEARCH = "SELECT * FROM billboardsdb WHERE location = ?";
-        if (billboardDb.connectToBillboardDb()) {
+        if (connection) {
             try {
                 preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
                 preparedStatement.setString(1, location);
@@ -120,11 +120,11 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
     }
 
     @Override
-    public Billboard viewBillboardById(long serialNumber) {
+    public Billboard viewBillboardById(long serialNumber, boolean connection) {
         Billboard billboard = new Billboard();
         BookingDetails bookingDetails = new BookingDetails();
         String SEARCH = "SELECT * FROM billboardsdb WHERE serialnumber = ?";
-        if (billboardDb.connectToBillboardDb()) {
+        if (connection) {
             try {
                 preparedStatement = billboardDb.getConnections().prepareStatement(SEARCH);
                 preparedStatement.setLong(1, serialNumber);
@@ -156,13 +156,13 @@ public class AdminBillboardMethods implements IAdminBillboardMethods {
     }
 
     @Override
-    public String takeDownAd(long serialNumber, char confirm) {
+    public String takeDownAd(long serialNumber, char confirm, boolean connection) {
         String message = "";
 
-        viewBillboardById(serialNumber);
+        viewBillboardById(serialNumber,connection );
 
         String UPDATE = "UPDATE billboardsdb SET  customer =?, bookeddate =?, timebooked =? , state =?, duration =?, uploadedfile = ?, totalprice = ? WHERE serialnumber =?";
-        if (billboardDb.connectToBillboardDb()) {
+        if (connection) {
             try {
                 preparedStatement = billboardDb.getConnections().prepareStatement(UPDATE);
                 preparedStatement.setString(1, "null");

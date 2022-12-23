@@ -5,6 +5,6 @@ import entity.billboards.BookingDetails;
 import java.util.List;
 
 public interface IBillboardMethods {
-    List viewAvailableBillboards();
-    String bookBillboard(BookingDetails bookingDetails, char confirm, long id);
+    List viewAvailableBillboards(boolean connection);
+    String bookBillboard(BookingDetails bookingDetails, char confirm, long id, boolean connection);
 }
