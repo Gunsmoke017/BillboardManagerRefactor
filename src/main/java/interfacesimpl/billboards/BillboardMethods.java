@@ -4,6 +4,7 @@ import database.BillboardDb;
 import entity.billboards.Billboard;
 import entity.billboards.BookingDetails;
 import enums.State;
+import exceptions.NoConnectionException;
 import interfaces.billboards.IBillboardMethods;
 import interfacesimpl.admin.AdminBillboardMethods;
 
@@ -46,6 +47,8 @@ public class BillboardMethods implements IBillboardMethods {
             } catch (SQLException ee) {
                 ee.printStackTrace();
             }
+        } else{
+            throw new NoConnectionException(" >> No Connection found");
         }
         return billboardsHolder;
     }
@@ -68,7 +71,7 @@ public class BillboardMethods implements IBillboardMethods {
                preparedStatement.setString(1,bookingDetails.getCustomer());
                preparedStatement.setString(2,bookingDetails.getBookedDate());
                preparedStatement.setString(3,bookingDetails.getTimeBooked());
-               preparedStatement.setString(4,"Booked");
+               preparedStatement.setString(4,State.Booked.toString());
                preparedStatement.setFloat(5,bookingDetails.getDurationOfBooking());
                preparedStatement.setString(6,bookingDetails.getUploadedFile());
                preparedStatement.setFloat(7,bookingDetails.getPrice());
@@ -85,6 +88,8 @@ public class BillboardMethods implements IBillboardMethods {
             catch (SQLException ee){
                 ee.printStackTrace();
             }
+        } else{
+            throw new NoConnectionException(" >> No Connection found");
         }
         return message;
     }
