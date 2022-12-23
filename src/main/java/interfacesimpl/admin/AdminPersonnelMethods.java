@@ -39,6 +39,8 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
             } catch(SQLException e){
                 e.printStackTrace();
             }
+        } else{
+//            Add connection not found exception
         }
         return outcome;
     }
