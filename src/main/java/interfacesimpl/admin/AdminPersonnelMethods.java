@@ -55,15 +55,19 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
                 preparedStatement.setString(1, email);
                 System.out.println(" >> Email entered is: " + email);
                 resultSet = preparedStatement.executeQuery();
-                while(resultSet.next()){
+                if (resultSet.next()){
                     personnel.setEmail(email);
                     personnel.setFirstName(resultSet.getString("firstname"));
                     personnel.setLastName(resultSet.getString("lastname"));
                     personnel.setPassword(resultSet.getString("password"));
+                } else{
+//                    Add personnel does not exist
                 }
             } catch (SQLException e ){
                 e.printStackTrace();
             }
+        } else {
+//            Add no connection exception
         }
         return personnel;
     }
@@ -87,6 +91,8 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
             } catch(SQLException e ){
                 e.printStackTrace();
             }
+        } else {
+//            Add no connection exception
         }
         return personnels;
     }
@@ -107,6 +113,8 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
                 } catch (SQLException e){
                     e.printStackTrace();
                 }
+            } else {
+//                Add no connection exception
             }
         } else if(confirm =='n' || confirm == 'N'){
             message = " >> Operation aborted";
@@ -150,6 +158,9 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
             } catch(SQLException e){
                 e.printStackTrace();
             }
+        }
+        else{
+//            Add no connection exception
         }
         return validate;
     }
