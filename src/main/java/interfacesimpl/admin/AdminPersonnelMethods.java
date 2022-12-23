@@ -2,6 +2,7 @@ package interfacesimpl.admin;
 
 import database.BillboardDb;
 import entity.person.Personnel;
+import exceptions.*;
 import interfaces.admin.IAdminPersonnelMethods;
 
 import java.sql.PreparedStatement;
@@ -31,7 +32,7 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
                 upd = preparedStatement.executeUpdate();
 
                 if(upd == 0){
-//                    Add exception for failure to insert into database
+                    throw  new DatabaseInsertionException(" >> Could not insert personnel into database");
                 } else{
                     System.out.println(" >> Personnel registered successfully");
                     outcome = true;
@@ -40,7 +41,7 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
                 e.printStackTrace();
             }
         } else{
-//            Add connection not found exception
+            throw new NoConnectionException(" >> No Connection found");
         }
         return outcome;
     }
@@ -61,13 +62,13 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
                     personnel.setLastName(resultSet.getString("lastname"));
                     personnel.setPassword(resultSet.getString("password"));
                 } else{
-//                    Add personnel does not exist
+                    throw new EmailDoesNotExistException(" >> Email does not exist");
                 }
             } catch (SQLException e ){
                 e.printStackTrace();
             }
         } else {
-//            Add no connection exception
+            throw new NoConnectionException(" >> No Connection found");
         }
         return personnel;
     }
@@ -92,7 +93,7 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
                 e.printStackTrace();
             }
         } else {
-//            Add no connection exception
+            throw new NoConnectionException(" >> No Connection found");
         }
         return personnels;
     }
@@ -114,12 +115,12 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
                     e.printStackTrace();
                 }
             } else {
-//                Add no connection exception
+                throw new NoConnectionException(" >> No Connection found");
             }
         } else if(confirm =='n' || confirm == 'N'){
             message = " >> Operation aborted";
         } else{
-//            Add exception to handle incorrect input for the confirm action
+            throw new InvalidKeyEnteredException(" >> Invalid key entered");
         }
         return message;
     }
@@ -147,20 +148,20 @@ public class AdminPersonnelMethods implements IAdminPersonnelMethods {
                         if(password.equals(result)){
                             validate = true;
                         } else{
-//                            Throw new password mismatch exception
+                            throw new PasswordMismatchException(" >> Email and password do not match");
                         }
                     } else{
-//                        password not correct exception
+                        throw new IncorrectPasswordException(" >> Incorrect password entered");
                     }
                 } else{
-//                    throw email  does not exist exception
+                    throw new EmailDoesNotExistException(" >> Email does not exist");
                 }
             } catch(SQLException e){
                 e.printStackTrace();
             }
         }
         else{
-//            Add no connection exception
+            throw new NoConnectionException(" >> No Connection found");
         }
         return validate;
     }
