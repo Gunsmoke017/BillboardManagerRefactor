@@ -16,7 +16,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BillboardMethods implements IBillboardMethods {
+public class
+BillboardMethods implements IBillboardMethods {
     BillboardDb billboardDb = new BillboardDb();
     PreparedStatement preparedStatement;
     ResultSet resultSet;
@@ -58,7 +59,9 @@ public class BillboardMethods implements IBillboardMethods {
         AdminBillboardMethods adminBillboardMethods = new AdminBillboardMethods();
         String message="";
         LocalDateTime dateTimeGetter = LocalDateTime.now();
-        DateTimeFormatter dateFormatter =DateTimeFormatter.ofPattern("EEEE, MMMM dd yyyy");
+//        DateTimeFormatter dateFormatter =DateTimeFormatter.ofPattern("EEEE, MMMM dd yyyy");
+//        DateTimeFormatter dateFormatter =DateTimeFormatter.ofPattern("EEEE, MMMM dd yyyy");
+        DateTimeFormatter dateFormatter =DateTimeFormatter.ofPattern("yyyy:MM:dd");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:MM");
 
         bookingDetails.setBookedDate(dateFormatter.format(dateTimeGetter));
